@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Destinations — Voyage Sabai</title>
+<meta name="description" content="Explorez 23 villes de Thaïlande réparties en trois régions — Nord, Centre et Sud. Cliquez sur une ville pour découvrir son ambiance et bientôt ses photos.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="page-bg-decor" aria-hidden="true"></div>
+
+<svg style="position:absolute; width:0; height:0; overflow:hidden;" aria-hidden="true">
+  <defs>
+    <symbol id="ic-plane" viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></symbol>
+    <symbol id="ic-passport" viewBox="0 0 64 64">
+      <rect x="10" y="6" width="44" height="52" rx="5"/>
+      <circle cx="32" cy="27" r="9" fill="none" stroke="currentColor" stroke-width="2.6"/>
+      <path d="M32 21v12M26 27h12" stroke="currentColor" stroke-width="2.6" fill="none"/>
+      <rect x="18" y="44" width="28" height="3" opacity="0.85"/>
+      <rect x="18" y="50" width="20" height="3" opacity="0.85"/>
+    </symbol>
+    <symbol id="ic-temple" viewBox="0 0 64 64">
+      <polygon points="32,3 41,16 23,16"/>
+      <polygon points="19,18 45,18 52,29 12,29"/>
+      <polygon points="9,31 55,31 62,43 2,43"/>
+      <rect x="13" y="45" width="38" height="15"/>
+      <rect x="27" y="48" width="10" height="12"/>
+    </symbol>
+    <symbol id="ic-flag" viewBox="0 0 64 64">
+      <rect x="8" y="4" width="4" height="56" rx="2" fill="#8a6a46"/>
+      <rect x="12" y="8" width="40" height="6.4" fill="#A51931"/>
+      <rect x="12" y="14.4" width="40" height="6.4" fill="#F4F5F8"/>
+      <rect x="12" y="20.8" width="40" height="12.8" fill="#2D2A4A"/>
+      <rect x="12" y="33.6" width="40" height="6.4" fill="#F4F5F8"/>
+      <rect x="12" y="40" width="40" height="6.4" fill="#A51931"/>
+    </symbol>
+    <symbol id="ic-palm" viewBox="0 0 64 64">
+      <path d="M30 60c-2-18 0-28 6-34" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      <ellipse cx="30" cy="19" rx="15" ry="5.5" transform="rotate(-25 30 19)"/>
+      <ellipse cx="35" cy="17" rx="15" ry="5.5" transform="rotate(6 35 17)"/>
+      <ellipse cx="39" cy="20" rx="15" ry="5.5" transform="rotate(36 39 20)"/>
+      <ellipse cx="34" cy="25" rx="13" ry="4.5" transform="rotate(-58 34 25)"/>
+      <circle cx="33" cy="28" r="3"/>
+      <circle cx="38.5" cy="30" r="3"/>
+    </symbol>
+    <symbol id="ic-sun" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="13"/>
+      <g stroke="currentColor" stroke-width="4" stroke-linecap="round">
+        <path d="M32 4v8M32 52v8M4 32h8M52 32h8M12 12l6 6M46 46l6 6M52 12l-6 6M18 46l-6 6"/>
+      </g>
+    </symbol>
+    <symbol id="ic-bowl" viewBox="0 0 64 64">
+      <path d="M8 30h48c0 12-10 22-24 22S8 42 8 30z"/>
+      <rect x="4" y="26" width="56" height="6" rx="3"/>
+      <path d="M44 12l4 10M51 10l3 11" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M20 10c-3 3-3 6 0 9M28 6c-3 3-3 6 0 9" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.85"/>
+    </symbol>
+    <symbol id="ic-beach" viewBox="0 0 64 64">
+      <path d="M32 8c12 0 22 9 24 20H8C10 17 20 8 32 8z"/>
+      <rect x="30" y="26" width="4" height="30" rx="2"/>
+      <path d="M12 56c6-6 12-6 18 0s12 6 18 0" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/>
+    </symbol>
+    <symbol id="ic-boat" viewBox="0 0 64 64">
+      <path d="M4 40c6 10 18 14 28 14s22-4 28-14z"/>
+      <rect x="20" y="25" width="18" height="13" rx="2"/>
+      <path d="M40 40L58 14" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
+    </symbol>
+    <symbol id="ic-drink" viewBox="0 0 64 64">
+      <path d="M20 24h24l-4 32a6 6 0 0 1-6 5H30a6 6 0 0 1-6-5z"/>
+      <path d="M32 24V10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      <path d="M21 40c6-4 16-4 22 0" stroke="currentColor" stroke-width="2.5" fill="none" opacity="0.8"/>
+      <circle cx="32" cy="8" r="4"/>
+    </symbol>
+    <symbol id="ic-photo" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <circle cx="9" cy="10.5" r="1.6"/>
+      <path d="M21 16l-5.5-5-4 4L8 12l-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="site-header">
+  <nav class="container nav">
+    <a href="index.html" class="brand">Voyage <span>Sabai</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="comment-ca-marche.html">Comment ça marche</a></li>
+      <li><a href="destinations.html" class="active">Destinations</a></li>
+      <li><a href="tarifs.html">Tarifs</a></li>
+      <li><a href="a-propos.html">À propos</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="reserver.html" class="btn btn-primary">Réserver un appel</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <section class="page-hero" style="padding-bottom:0;">
+    <div class="container">
+      <p class="breadcrumb"><a href="index.html">Accueil</a> / Destinations</p>
+      <p class="eyebrow">Destinations</p>
+      <h1>Où voulez-vous poser vos valises ?</h1>
+      <p class="lede">Cliquez sur une ville pour découvrir son ambiance. Les photos de chaque ville arrivent bientôt.</p>
+    </div>
+  </section>
+
+  <!-- ===================== DESTINATIONS EXPLORER ===================== -->
+  <section>
+    <div class="container">
+      <div class="dest-explorer" id="destExplorer">
+
+      <div class="dest-regions" id="destThumbs">
+
+        <div class="dest-region">
+          <h3 class="dest-region-title">Nord</h3>
+          <div class="dest-region-list">
+            <button type="button" class="dest-thumb" data-city="chiangmai">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-temple"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Chiang Mai</span>
+                <span class="dest-thumb-tag">Douceur du nord</span>
+              </span>
+            </button>
+            <button type="button" class="dest-thumb" data-city="chiangrai">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-temple"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Chiang Rai</span>
+                <span class="dest-thumb-tag">Temples blancs et Triangle d'or</span>
+              </span>
+            </button>
+            <button type="button" class="dest-thumb" data-city="pai">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-palm"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Pai</span>
+                <span class="dest-thumb-tag">Petite ville, esprit routard</span>
+              </span>
+            </button>
+            <button type="button" class="dest-thumb" data-city="chiangkhan">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-boat"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Chiang Khan</span>
+                <span class="dest-thumb-tag">Village au bord du Mékong</span>
+              </span>
+            </button>
+            <button type="button" class="dest-thumb" data-city="udonthani">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-temple"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Udon Thani</span>
+                <span class="dest-thumb-tag">Porte du nord-est authentique</span>
+              </span>
+            </button>
+            <button type="button" class="dest-thumb" data-city="lampang">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-temple"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Lampang</span>
+                <span class="dest-thumb-tag">Calèches et maisons en teck</span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <div class="dest-region">
+          <h3 class="dest-region-title">Centre</h3>
+          <div class="dest-region-list">
+            <button type="button" class="dest-thumb active" data-city="bangkok">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-temple"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Bangkok</span>
+                <span class="dest-thumb-tag">Capitale électrique</span>
+              </span>
+            </button>
+            <button type="button" class="dest-thumb" data-city="ayutthaya">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-temple"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Ayutthaya</span>
+                <span class="dest-thumb-tag">Cité des ruines sacrées</span>
+              </span>
+            </button>
+            <button type="button" class="dest-thumb" data-city="kanchanaburi">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-boat"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Kanchanaburi</span>
+                <span class="dest-thumb-tag">Rivière Kwaï et cascades</span>
+              </span>
+            </button>
+            <button type="button" class="dest-thumb" data-city="pattaya">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-drink"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Pattaya</span>
+                <span class="dest-thumb-tag">Bord de mer animé</span>
+              </span>
+            </button>
+            <button type="button" class="dest-thumb" data-city="kohchang">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-palm"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Koh Chang</span>
+                <span class="dest-thumb-tag">Jungle tropicale et grandes plages</span>
+              </span>
+            </button>
+            <button type="button" class="dest-thumb" data-city="kohkood">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-beach"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Koh Kood</span>
+                <span class="dest-thumb-tag">Île préservée, eaux limpides</span>
+              </span>
+            </button>
+            <button type="button" class="dest-thumb" data-city="huahin">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-sun"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Hua Hin</span>
+                <span class="dest-thumb-tag">Station balnéaire royale</span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <div class="dest-region">
+          <h3 class="dest-region-title">Sud</h3>
+          <div class="dest-region-list">
+            <button type="button" class="dest-thumb" data-city="krabi">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-boat"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Krabi</span>
+                <span class="dest-thumb-tag">Falaises et mer turquoise</span>
+              </span>
+            </button>
+            <button type="button" class="dest-thumb" data-city="kohlanta">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-beach"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Koh Lanta</span>
+                <span class="dest-thumb-tag">Île paisible, rythme lent</span>
+              </span>
+            </button>
+            <button type="button" class="dest-thumb" data-city="kohphiphi">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-drink"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Koh Phi Phi</span>
+                <span class="dest-thumb-tag">Îles et eaux cristallines</span>
+              </span>
+            </button>
+            <button type="button" class="dest-thumb" data-city="khaosok">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-palm"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Khao Sok</span>
+                <span class="dest-thumb-tag">Jungle primaire et lac spectaculaire</span>
+              </span>
+            </button>
+            <button type="button" class="dest-thumb" data-city="kohsamui">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-drink"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Koh Samui</span>
+                <span class="dest-thumb-tag">Île resort, cocotiers et confort</span>
+              </span>
+            </button>
+            <button type="button" class="dest-thumb" data-city="kohtao">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-boat"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Koh Tao</span>
+                <span class="dest-thumb-tag">Paradis de la plongée</span>
+              </span>
+            </button>
+            <button type="button" class="dest-thumb" data-city="phuket">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-boat"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Phuket</span>
+                <span class="dest-thumb-tag">Grande île, mille visages</span>
+              </span>
+            </button>
+            <button type="button" class="dest-thumb" data-city="phangnga">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-boat"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Phang Nga</span>
+                <span class="dest-thumb-tag">Baie aux rochers karstiques</span>
+              </span>
+            </button>
+            <button type="button" class="dest-thumb" data-city="trang">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-beach"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Trang</span>
+                <span class="dest-thumb-tag">Portes des îles secrètes du sud</span>
+              </span>
+            </button>
+            <button type="button" class="dest-thumb" data-city="kohlipe">
+              <span class="dest-thumb-icon"><svg class="fresco-icon"><use href="#ic-sun"></use></svg></span>
+              <span class="dest-thumb-text">
+                <span class="dest-thumb-name">Koh Lipe</span>
+                <span class="dest-thumb-tag">Les Maldives thaïlandaises</span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="dest-map-section">
+        <div class="dest-map-frame dest-map-frame-large">
+          <img src="images/thailand-map.jpg" alt="Carte illustrée de la Thaïlande avec ses régions et ses principales villes" class="dest-map-img" loading="lazy">
+        </div>
+      </div>
+
+      <div class="dest-detail">
+        <button type="button" class="dest-back-btn" id="destBackBtn">← Retour aux destinations</button>
+        <div class="dest-panels" id="destPanels">
+            <div class="dest-panel" data-city="bangkok">
+              <p class="mono-tag" style="margin-bottom:10px;">Bangkok</p>
+              <h2>Capitale électrique</h2>
+              <p class="lede" style="margin-top:14px;">Une mégapole qui ne dort jamais : temples dorés au coin d'un rooftop bar, marchés flottants au petit matin, tuk-tuks qui filent entre les gratte-ciels. Bangkok surprend par ses contrastes — sacré et frénétique, ancien et ultramoderne.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="chiangmai" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Chiang Mai</p>
+              <h2>Douceur du nord</h2>
+              <p class="lede" style="margin-top:14px;">Nichée dans les montagnes, Chiang Mai respire un rythme plus lent : temples de bois patinés, marchés de nuit animés, cours de cuisine thaïe et treks vers les tribus des collines. L'ambiance est chaleureuse, artisanale, résolument nature.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="ayutthaya" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Ayutthaya</p>
+              <h2>Cité des ruines sacrées</h2>
+              <p class="lede" style="margin-top:14px;">L'ancienne capitale du royaume siamois se visite à vélo, entre stupas effondrés envahis par les racines et bouddhas de pierre silencieux. Une atmosphère méditative, hors du temps, à deux pas de Bangkok.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="krabi" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Krabi</p>
+              <h2>Falaises et mer turquoise</h2>
+              <p class="lede" style="margin-top:14px;">Des falaises calcaires plongeant dans une mer turquoise, des longtail boats colorés, un rythme résolument tourné vers l'eau. Krabi est le point de départ idéal vers les îles, entre grimpe, plage et couchers de soleil.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="kohlanta" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Koh Lanta</p>
+              <h2>Île paisible, rythme lent</h2>
+              <p class="lede" style="margin-top:14px;">Moins touristique que ses voisines, Koh Lanta cultive une ambiance décontractée : longues plages presque désertes, bungalows en bois, couchers de soleil sans se presser. Idéale pour ralentir en fin de séjour.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="kohphiphi" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Koh Phi Phi</p>
+              <h2>Îles et eaux cristallines</h2>
+              <p class="lede" style="margin-top:14px;">Falaises spectaculaires, lagons turquoise et vie nocturne animée : Koh Phi Phi concentre l'image de carte postale de la Thaïlande. Entre plongée, sorties en bateau et bars de plage, l'ambiance est à la fois festive et grandiose.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="chiangrai" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Chiang Rai</p>
+              <h2>Temples blancs et Triangle d'or</h2>
+              <p class="lede" style="margin-top:14px;">Moins courue que Chiang Mai, Chiang Rai séduit avec son temple blanc aux mille miroirs, son temple bleu éclatant et la mystérieuse Maison Noire. Aux portes du Triangle d'or, l'ambiance est calme, artistique et empreinte de spiritualité.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="pai" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Pai</p>
+              <h2>Petite ville, esprit routard</h2>
+              <p class="lede" style="margin-top:14px;">Nichée dans une vallée de montagnes, Pai cultive un esprit routard et décontracté : canyon à explorer, sources chaudes, marché de nuit animé et cafés en bois posés au bord de la rivière. Le rythme y est volontairement lent.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="chiangkhan" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Chiang Khan</p>
+              <h2>Village au bord du Mékong</h2>
+              <p class="lede" style="margin-top:14px;">Face au Laos, ce village aux maisons de bois s'étire le long du Mékong. Ambiance paisible et authentique : promenade au coucher du soleil, marché de nuit local, brume matinale sur le fleuve — loin des foules touristiques.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="udonthani" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Udon Thani</p>
+              <h2>Porte du nord-est authentique</h2>
+              <p class="lede" style="margin-top:14px;">Grande ville de l'Isaan, Udon Thani est un point de départ vers le site préhistorique de Ban Chiang et une immersion dans la Thaïlande rurale, loin des circuits touristiques classiques. Marchés locaux, vie de quartier et hospitalité sincère.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="lampang" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Lampang</p>
+              <h2>Calèches et maisons en teck</h2>
+              <p class="lede" style="margin-top:14px;">Ville authentique du nord, Lampang est connue pour ses calèches tirées par des chevaux, ses maisons en bois de teck centenaires et le temple Wat Phra That Lampang Luang, l'un des plus beaux de Thaïlande. Une ambiance paisible, loin des foules.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="kanchanaburi" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Kanchanaburi</p>
+              <h2>Rivière Kwaï et cascades</h2>
+              <p class="lede" style="margin-top:14px;">Entre le pont de la rivière Kwaï chargé d'histoire et les cascades en escalier du parc national d'Erawan, Kanchanaburi mêle mémoire et nature. Une ambiance verdoyante, propice aux randonnées et à la baignade en pleine jungle.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="pattaya" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Pattaya</p>
+              <h2>Bord de mer animé</h2>
+              <p class="lede" style="margin-top:14px;">Station balnéaire tournée vers le divertissement : plages, sports nautiques, marchés flottants et vie nocturne qui ne s'arrête jamais. Pattaya assume pleinement son ambiance festive et cosmopolite.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="kohkood" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Koh Kood</p>
+              <h2>Île préservée, eaux limpides</h2>
+              <p class="lede" style="margin-top:14px;">L'une des îles les plus préservées du golfe de Thaïlande : plages de sable blanc, eaux turquoise peu fréquentées, cascades cachées dans la jungle. L'ambiance est résolument tranquille, loin du tourisme de masse.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="kohchang" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Koh Chang</p>
+              <h2>Jungle tropicale et grandes plages</h2>
+              <p class="lede" style="margin-top:14px;">Deuxième plus grande île de Thaïlande, Koh Chang associe plages étendues et jungle dense qui grimpe jusqu'aux collines. Entre randonnée, cascades et farniente, l'ambiance oscille entre aventure et détente.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="huahin" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Hua Hin</p>
+              <h2>Station balnéaire royale</h2>
+              <p class="lede" style="margin-top:14px;">Ancienne retraite royale à deux pas de Bangkok, Hua Hin offre une ambiance balnéaire plus posée : longue plage, marché de nuit réputé, terrains de golf et une pointe d'élégance rétro.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="khaosok" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Khao Sok</p>
+              <h2>Jungle primaire et lac spectaculaire</h2>
+              <p class="lede" style="margin-top:14px;">L'une des plus vieilles forêts tropicales du monde : falaises calcaires vertigineuses, lac de Cheow Lan et ses bungalows flottants, faune sauvage au détour des sentiers. Une immersion totale dans la nature, loin de tout.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="kohsamui" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Koh Samui</p>
+              <h2>Île resort, cocotiers et confort</h2>
+              <p class="lede" style="margin-top:14px;">La grande île du golfe : plages bordées de cocotiers, spas, bons restaurants et une infrastructure touristique bien rodée. Koh Samui séduit ceux qui cherchent confort et détente sans sacrifier le charme tropical.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="kohtao" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Koh Tao</p>
+              <h2>Paradis de la plongée</h2>
+              <p class="lede" style="margin-top:14px;">Petite île réputée dans le monde entier pour sa plongée sous-marine accessible et ses récifs colorés. L'ambiance y est jeune et décontractée, entre écoles de plongée, bars de plage et couchers de soleil sur l'eau.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="phuket" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Phuket</p>
+              <h2>Grande île, mille visages</h2>
+              <p class="lede" style="margin-top:14px;">De la vieille ville sino-portugaise colorée aux plages animées de Patong, en passant par les criques tranquilles du sud, Phuket concentre toutes les ambiances de la Thaïlande insulaire en une seule île.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="phangnga" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Phang Nga</p>
+              <h2>Baie aux rochers karstiques</h2>
+              <p class="lede" style="margin-top:14px;">La baie de Phang Nga déploie ses pitons rocheux surgissant de la mer émeraude, ses villages de pêcheurs sur pilotis et ses grottes à explorer en kayak. Un décor spectaculaire, presque irréel.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="trang" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Trang</p>
+              <h2>Portes des îles secrètes du sud</h2>
+              <p class="lede" style="margin-top:14px;">Trang est le point de départ vers des îles encore confidentielles — Koh Mook et sa grotte d'émeraude, Koh Kradan et ses eaux cristallines. Une ambiance authentique, loin des sentiers battus du tourisme de masse.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+
+            <div class="dest-panel" data-city="kohlipe" hidden>
+              <p class="mono-tag" style="margin-bottom:10px;">Koh Lipe</p>
+              <h2>Les Maldives thaïlandaises</h2>
+              <p class="lede" style="margin-top:14px;">Tout au sud, presque à la frontière malaisienne, Koh Lipe cultive des allures de Maldives thaïlandaises : sable blanc immaculé, eaux turquoise translucides et rythme volontairement ralenti, loin de tout.</p>
+              <div class="dest-gallery">
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+                <div class="dest-photo-placeholder"><svg class="fresco-icon"><use href="#ic-photo"></use></svg><span>Photo à venir</span></div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FRESCO ===================== -->
+  <div class="fresco-strip" aria-hidden="true">
+    <div class="fresco-track">
+      <svg class="fresco-icon"><use href="#ic-plane"></use></svg>
+      <svg class="fresco-icon"><use href="#ic-passport"></use></svg>
+      <svg class="fresco-icon"><use href="#ic-bowl"></use></svg>
+      <svg class="fresco-icon"><use href="#ic-temple"></use></svg>
+      <svg class="fresco-icon"><use href="#ic-beach"></use></svg>
+      <svg class="fresco-icon"><use href="#ic-flag"></use></svg>
+      <svg class="fresco-icon"><use href="#ic-boat"></use></svg>
+      <svg class="fresco-icon"><use href="#ic-palm"></use></svg>
+      <svg class="fresco-icon"><use href="#ic-drink"></use></svg>
+      <svg class="fresco-icon"><use href="#ic-sun"></use></svg>
+      <svg class="fresco-icon"><use href="#ic-plane"></use></svg>
+      <svg class="fresco-icon"><use href="#ic-passport"></use></svg>
+      <svg class="fresco-icon"><use href="#ic-bowl"></use></svg>
+      <svg class="fresco-icon"><use href="#ic-temple"></use></svg>
+      <svg class="fresco-icon"><use href="#ic-beach"></use></svg>
+      <svg class="fresco-icon"><use href="#ic-flag"></use></svg>
+      <svg class="fresco-icon"><use href="#ic-boat"></use></svg>
+      <svg class="fresco-icon"><use href="#ic-palm"></use></svg>
+      <svg class="fresco-icon"><use href="#ic-drink"></use></svg>
+      <svg class="fresco-icon"><use href="#ic-sun"></use></svg>
+    </div>
+  </div>
+
+  <section style="padding: 3rem 0;">
+    <div class="container">
+      <div class="card" style="padding:56px 48px; text-align:center; background:var(--cream-2); border:none;">
+        <h2 style="max-width:560px; margin:0 auto 24px;">Une ville vous fait envie ?</h2>
+        <p class="lede" style="max-width:480px; margin:0 auto 28px;">Parlons-en pendant l'appel découverte, gratuit et sans engagement.</p>
+        <a href="reserver.html" class="btn btn-primary">Réserver mon appel gratuit</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Voyage <span>Sabai</span></div>
+        <p style="color:rgba(251,243,230,0.7); font-size:14px; max-width:260px; line-height:1.6;">Voyages en Thaïlande pensés sur mesure, du premier appel jusqu'à votre retour.</p>
+        <div class="social-row" style="margin-top:24px;">
+          <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 9h3V6h-3c-2 0-3.5 1.5-3.5 3.5V12H8v3h2.5v6h3v-6H16l.5-3h-3V9.8c0-.6.2-.8.8-.8z"/></svg></a>
+          <a href="https://tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 4v10.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 4c0 2.5 2 4.5 4.5 4.5"/></svg></a>
+          <a href="https://pinterest.com/" target="_blank" rel="noopener" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9.5 17c1-3.5 1.5-5.5 1.5-5.5m0 0c0-1.5 1-3 2.7-3 1.8 0 2.8 1.2 2.8 3 0 2.3-1.2 4.2-3 4.2-1 0-1.7-.5-2-1.2"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Le site</h4>
+        <a href="index.html">Accueil</a>
+        <a href="comment-ca-marche.html">Comment ça marche</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="tarifs.html">Tarifs</a>
+        <a href="a-propos.html">À propos</a>
+      </div>
+      <div class="footer-col">
+        <h4>Commencer</h4>
+        <a href="reserver.html">Réserver un appel</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Infos</h4>
+        <a href="contact.html">Mentions légales</a>
+        <a href="contact.html">CGV</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="legal-note">© <span data-year></span> Voyage Sabai — Tous droits réservés</p>
+      <p class="legal-note">Fait avec ✈ depuis la France</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

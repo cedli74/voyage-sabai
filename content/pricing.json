@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "name": "Appel découverte",
+      "description": "Un premier échange pour cadrer votre besoin.",
+      "price": "Gratuit"
+    },
+    {
+      "name": "Programme",
+      "description": "Itinéraire sur mesure ; organisation complète des vols, hôtels et transports en option (50€/adulte, 25€/enfant, par période de 2 semaines).",
+      "price": "50€"
+    },
+    {
+      "name": "Planning jour par jour",
+      "description": "Planning détaillé jour par jour : monuments, quartiers et shopping placés au bon moment.",
+      "price": "75€/adulte, 40€/enfant, par période de 2 semaines"
+    }
+  ]
+}

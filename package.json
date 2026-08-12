@@ -1,0 +1,11 @@
+{
+  "name": "voyage-sabai",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "python -m http.server 3000"
+  },
+  "dependencies": {
+    "stripe": "^17.0.0"
+  }
+}
