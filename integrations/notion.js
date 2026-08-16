@@ -74,11 +74,6 @@ export async function createBookingRequest({ firstName, lastName, email, phone, 
   });
 }
 
-export function generateVideoLink(pageId) {
-  const slug = 'VoyageSabai-' + pageId.replace(/-/g, '').slice(0, 16);
-  return `https://meet.jit.si/${slug}`;
-}
-
 export async function getPendingConfirmations() {
   const notion = createNotionClient();
   if (!notion || !isNotionConfigured()) return [];
@@ -98,6 +93,7 @@ export async function getPendingConfirmations() {
     fullName: page.properties.Name?.title?.[0]?.plain_text || '',
     email: page.properties.Email?.email || '',
     format: page.properties.Format?.select?.name || '',
+    dateISO: page.properties.Date?.date?.start || '',
     dateLabel: page.properties['Jour (libellé)']?.rich_text?.[0]?.plain_text
       || page.properties.Date?.date?.start
       || '',
@@ -105,10 +101,11 @@ export async function getPendingConfirmations() {
   }));
 }
 
-export async function markConfirmationSent(pageId, videoLink) {
+export async function markConfirmationSent(pageId, joinUrl, startUrl) {
   const notion = createNotionClient();
   const properties = { 'Confirmation envoyée': { checkbox: true } };
-  if (videoLink) properties['Lien visio'] = { url: videoLink };
+  if (joinUrl) properties['Lien visio'] = { url: joinUrl };
+  if (startUrl) properties['Lien visio (organisateur)'] = { url: startUrl };
 
   await notion.pages.update({ page_id: pageId, properties });
 }
