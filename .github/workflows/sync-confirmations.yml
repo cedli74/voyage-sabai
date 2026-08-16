@@ -1,0 +1,15 @@
+name: Sync booking confirmations
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch: {}
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call sync-confirmations endpoint
+        run: |
+          curl -sf -X POST "https://atelier-siam.vercel.app/api/booking/sync-confirmations" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}"

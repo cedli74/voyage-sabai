@@ -1,4 +1,5 @@
 import { createBookingRequest } from '../../integrations/notion.js';
+import { sendOwnerNotification } from '../../integrations/email.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -15,7 +16,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    await createBookingRequest({
+    const page = await createBookingRequest({
       firstName: prenom,
       lastName: nom,
       email,
@@ -26,6 +27,21 @@ export default async function handler(req, res) {
       slot: creneau,
       notes: message,
     });
+
+    try {
+      await sendOwnerNotification({
+        fullName: [prenom, nom].filter(Boolean).join(' '),
+        email,
+        phone: tel,
+        format,
+        dateLabel: jour,
+        slot: creneau,
+        notes: message,
+        notionUrl: page.url,
+      });
+    } catch (notifyError) {
+      console.error('[booking] Échec de la notification propriétaire:', notifyError.message);
+    }
 
     res.status(200).json({
       ok: true,
