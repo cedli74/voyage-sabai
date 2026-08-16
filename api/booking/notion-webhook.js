@@ -7,8 +7,11 @@ export default async function handler(req, res) {
     return;
   }
 
-  if (!process.env.CRON_SECRET || req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}`) {
-    res.status(401).json({ error: 'Unauthorized' });
+  const body = req.body || {};
+
+  if (body.verification_token) {
+    console.log('[notion-webhook] Verification token:', body.verification_token);
+    res.status(200).json({ ok: true });
     return;
   }
 
@@ -16,6 +19,7 @@ export default async function handler(req, res) {
     const result = await processPendingConfirmations();
     res.status(200).json({ ok: true, ...result });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('[notion-webhook] Échec:', error.message);
+    res.status(200).json({ ok: false });
   }
 }

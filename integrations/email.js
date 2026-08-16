@@ -16,11 +16,13 @@ export async function sendOwnerNotification({ fullName, email, phone, format, da
     return;
   }
 
+  const notionAppUrl = notionUrl ? notionUrl.replace(/^https:/, 'notion:') : null;
+
   const lines = [
     `<p><strong>${fullName}</strong> souhaite un appel le <strong>${dateLabel}</strong> à <strong>${slot}</strong> (${format || 'format non précisé'}).</p>`,
     `<p>Email : ${email}${phone ? ` · Téléphone : ${phone}` : ''}</p>`,
     notes ? `<p>Message : ${notes}</p>` : '',
-    notionUrl ? `<p><a href="${notionUrl}">Ouvrir la demande dans Notion</a></p>` : '',
+    notionAppUrl ? `<p><a href="${notionAppUrl}">Ouvrir dans l'app Notion</a> (<a href="${notionUrl}">ou dans le navigateur</a>)</p>` : '',
     `<p>Validez le rendez-vous en passant son statut à "Confirmé" dans Notion pour déclencher l'email de confirmation au client.</p>`,
   ];
 
