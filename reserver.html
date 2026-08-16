@@ -159,28 +159,11 @@
 
         <div class="booking-main">
           <p class="mono-tag" style="margin-bottom:16px;">Choisissez un jour</p>
-          <div class="booking-days" id="bookingDays">
-            <button type="button" class="day-pill active" data-full="Lundi 11 août"><span>LUN</span><span class="d-num">11</span></button>
-            <button type="button" class="day-pill" data-full="Mardi 12 août"><span>MAR</span><span class="d-num">12</span></button>
-            <button type="button" class="day-pill" data-full="Mercredi 13 août"><span>MER</span><span class="d-num">13</span></button>
-            <button type="button" class="day-pill" data-full="Jeudi 14 août"><span>JEU</span><span class="d-num">14</span></button>
-            <button type="button" class="day-pill" data-full="Vendredi 15 août"><span>VEN</span><span class="d-num">15</span></button>
-            <button type="button" class="day-pill" data-full="Samedi 16 août"><span>SAM</span><span class="d-num">16</span></button>
-            <button type="button" class="day-pill" data-full="Lundi 18 août"><span>LUN</span><span class="d-num">18</span></button>
-          </div>
+          <div class="booking-days" id="bookingDays"></div>
 
-          <p class="mono-tag" style="margin-bottom:16px;">Créneaux disponibles (heure de Paris)</p>
-          <div class="slots-grid">
-            <button type="button" class="slot">09:00</button>
-            <button type="button" class="slot">10:30</button>
-            <button type="button" class="slot taken">12:00</button>
-            <button type="button" class="slot">14:00</button>
-            <button type="button" class="slot">15:30</button>
-            <button type="button" class="slot taken">17:00</button>
-            <button type="button" class="slot">18:30</button>
-            <button type="button" class="slot">20:00</button>
-            <button type="button" class="slot taken">21:00</button>
-          </div>
+          <p class="mono-tag" style="margin-bottom:16px;">Créneaux disponibles (9h–19h, heure de Paris)</p>
+          <div class="slots-grid" id="bookingSlots"></div>
+          <p class="booking-message" id="slots-message"></p>
 
           <div class="booking-confirm">
             <div class="confirm-box">
@@ -190,6 +173,7 @@
 
             <form class="booking-submit-form" id="booking-form" style="margin-top:28px;">
               <input type="hidden" id="booking-day" name="jour" data-confirm-day-input>
+              <input type="hidden" id="booking-date" name="date" data-confirm-date-input>
               <input type="hidden" id="booking-slot" name="creneau" data-confirm-slot-input>
               <div class="booking-form-panel">
                 <div class="booking-form-fields">
@@ -231,8 +215,8 @@
 
               <div class="booking-success" style="display:none; text-align:center; padding:20px 0;">
                 <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="var(--jade)" stroke-width="1.8" style="margin:0 auto 20px;"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
-                <h3>C'est réservé !</h3>
-                <p class="lede" style="margin-top:12px;">Un email de confirmation vient de vous être envoyé avec le lien de l'appel. À très vite.</p>
+                <h3>Demande envoyée !</h3>
+                <p class="lede" style="margin-top:12px;">Votre créneau est en attente de validation. Vous recevrez un email de confirmation dès qu'il sera validé. À très vite.</p>
                 <a href="index.html" class="btn btn-outline" style="margin-top:24px;">Retour à l'accueil</a>
               </div>
             </form>
@@ -253,9 +237,7 @@
         <div class="social-row" style="margin-top:24px;">
           <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
           <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 9h3V6h-3c-2 0-3.5 1.5-3.5 3.5V12H8v3h2.5v6h3v-6H16l.5-3h-3V9.8c0-.6.2-.8.8-.8z"/></svg></a>
-          <a href="https://tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 4v10.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 4c0 2.5 2 4.5 4.5 4.5"/></svg></a>
-          <a href="https://pinterest.com/" target="_blank" rel="noopener" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9.5 17c1-3.5 1.5-5.5 1.5-5.5m0 0c0-1.5 1-3 2.7-3 1.8 0 2.8 1.2 2.8 3 0 2.3-1.2 4.2-3 4.2-1 0-1.7-.5-2-1.2"/></svg></a>
-        </div>
+          <a href="https://tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 4v10.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 4c0 2.5 2 4.5 4.5 4.5"/></svg></a>        </div>
       </div>
       <div class="footer-col">
         <h4>Le site</h4>

@@ -2,10 +2,15 @@
   "name": "voyage-sabai",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "python -m http.server 3000"
+    "dev": "node server.js",
+    "dev:static": "python -m http.server 3000"
   },
   "dependencies": {
+    "@notionhq/client": "^2.2.15",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
     "stripe": "^17.0.0"
   }
 }

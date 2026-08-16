@@ -68,40 +68,94 @@ function initScrollReveal() {
 
 function initBookingSelection() {
   const daysWrap = document.getElementById('bookingDays');
-  const slotsWrap = document.querySelector('.slots-grid');
+  const slotsWrap = document.getElementById('bookingSlots');
   if (!daysWrap || !slotsWrap) return;
 
+  const slotsMessage = document.getElementById('slots-message');
   const confirmDay = document.querySelector('[data-confirm-day]');
   const confirmSlot = document.querySelector('[data-confirm-slot]');
   const dayInput = document.querySelector('[data-confirm-day-input]');
+  const dateInput = document.querySelector('[data-confirm-date-input]');
   const slotInput = document.querySelector('[data-confirm-slot-input]');
 
-  daysWrap.querySelectorAll('.day-pill').forEach((pill) => {
-    pill.addEventListener('click', () => {
-      daysWrap.querySelectorAll('.day-pill').forEach((p) => p.classList.remove('active'));
-      pill.classList.add('active');
-      const full = pill.dataset.full || '';
-      if (confirmDay) confirmDay.textContent = full;
-      if (dayInput) dayInput.value = full;
-    });
-  });
+  const DAYS_AHEAD = 14;
+  const dayFormatter = new Intl.DateTimeFormat('fr-FR', { weekday: 'short' });
+  const fullFormatter = new Intl.DateTimeFormat('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
 
-  slotsWrap.querySelectorAll('.slot').forEach((slot) => {
-    if (slot.classList.contains('taken')) return;
-    slot.addEventListener('click', () => {
-      slotsWrap.querySelectorAll('.slot').forEach((s) => s.classList.remove('active'));
-      slot.classList.add('active');
-      const time = slot.textContent.trim();
-      if (confirmSlot) confirmSlot.textContent = time;
-      if (slotInput) slotInput.value = time;
-    });
-  });
+  const toISODate = (date) => {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+  };
 
-  const preselectedDay = daysWrap.querySelector('.day-pill.active');
-  if (preselectedDay) {
-    const full = preselectedDay.dataset.full || '';
+  const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
+  function clearSelectedSlot() {
+    if (confirmSlot) confirmSlot.textContent = '—';
+    if (slotInput) slotInput.value = '';
+  }
+
+  async function loadSlots(dateISO) {
+    clearSelectedSlot();
+    slotsWrap.innerHTML = '';
+    if (slotsMessage) slotsMessage.textContent = 'Chargement des créneaux...';
+
+    try {
+      const response = await fetch(`/api/booking/availability?date=${dateISO}`);
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Impossible de charger les créneaux.');
+
+      if (!data.slots.length) {
+        if (slotsMessage) slotsMessage.textContent = 'Aucun créneau disponible ce jour — essayez un autre jour.';
+        return;
+      }
+
+      if (slotsMessage) slotsMessage.textContent = '';
+
+      data.slots.forEach((slot) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'slot';
+        btn.textContent = slot;
+        btn.addEventListener('click', () => {
+          slotsWrap.querySelectorAll('.slot').forEach((s) => s.classList.remove('active'));
+          btn.classList.add('active');
+          if (confirmSlot) confirmSlot.textContent = slot;
+          if (slotInput) slotInput.value = slot;
+        });
+        slotsWrap.appendChild(btn);
+      });
+    } catch (error) {
+      if (slotsMessage) slotsMessage.textContent = error.message;
+    }
+  }
+
+  function selectDay(pill, dateISO, full) {
+    daysWrap.querySelectorAll('.day-pill').forEach((p) => p.classList.remove('active'));
+    pill.classList.add('active');
     if (confirmDay) confirmDay.textContent = full;
     if (dayInput) dayInput.value = full;
+    if (dateInput) dateInput.value = dateISO;
+    loadSlots(dateISO);
+  }
+
+  for (let i = 0; i < DAYS_AHEAD; i++) {
+    const date = new Date();
+    date.setDate(date.getDate() + i);
+    const dateISO = toISODate(date);
+    const full = capitalize(fullFormatter.format(date));
+
+    const pill = document.createElement('button');
+    pill.type = 'button';
+    pill.className = 'day-pill';
+    pill.dataset.full = full;
+    pill.dataset.date = dateISO;
+    pill.innerHTML = `<span>${dayFormatter.format(date).replace('.', '').toUpperCase()}</span><span class="d-num">${date.getDate()}</span>`;
+    pill.addEventListener('click', () => selectDay(pill, dateISO, full));
+    daysWrap.appendChild(pill);
+
+    if (i === 0) selectDay(pill, dateISO, full);
   }
 }
 
@@ -114,8 +168,9 @@ function initBookingForm() {
     event.preventDefault();
 
     const dayInput = bookingForm.querySelector('[data-confirm-day-input]');
+    const dateInput = bookingForm.querySelector('[data-confirm-date-input]');
     const slotInput = bookingForm.querySelector('[data-confirm-slot-input]');
-    if ((dayInput && !dayInput.value) || (slotInput && !slotInput.value)) {
+    if ((dayInput && !dayInput.value) || (dateInput && !dateInput.value) || (slotInput && !slotInput.value)) {
       if (messageBox) messageBox.textContent = 'Choisissez un jour et un créneau avant de confirmer.';
       return;
     }
@@ -123,7 +178,7 @@ function initBookingForm() {
     const formData = new FormData(bookingForm);
     const payload = Object.fromEntries(formData.entries());
 
-    if (messageBox) messageBox.textContent = 'Envoi de la réservation en cours...';
+    if (messageBox) messageBox.textContent = 'Envoi de la demande en cours...';
 
     try {
       const response = await fetch('/api/booking/create-booking', {
@@ -132,8 +187,10 @@ function initBookingForm() {
         body: JSON.stringify(payload),
       });
 
+      const data = await response.json().catch(() => ({}));
+
       if (!response.ok) {
-        throw new Error('La réservation n’a pas pu être enregistrée.');
+        throw new Error(data.error || 'La demande n’a pas pu être enregistrée.');
       }
 
       if (messageBox) messageBox.textContent = '';
@@ -157,32 +214,35 @@ function initPricingCalculator() {
 
   const formulas = {
     2: {
-      adultRate: 50,
-      childRate: 25,
+      adultBase: 50,
+      adultStep: 25,
+      childBase: 25,
+      childStep: 12.5,
       totalLabel: 'Formule 2 — Organisation complète',
-      adultText: '50 € par période de 2 semaines, par adulte',
-      childText: '25 € par période de 2 semaines, par enfant',
+      adultText: '50 € les 2 premières semaines, puis 25 €/semaine, par adulte',
+      childText: '25 € les 2 premières semaines, puis 12,5 €/semaine, par enfant (-12 ans)',
     },
     3: {
-      adultRate: 75,
-      childRate: 40,
+      adultBase: 70,
+      adultStep: 35,
+      childBase: 40,
+      childStep: 20,
       totalLabel: 'Formule 3 — Planning jour par jour',
-      adultText: '75 € par période de 2 semaines, par adulte',
-      childText: '40 € par période de 2 semaines, par enfant',
+      adultText: '70 € les 2 premières semaines, puis 35 €/semaine, par adulte',
+      childText: '40 € les 2 premières semaines, puis 20 €/semaine, par enfant (-12 ans)',
     },
   };
 
   const limits = {
     adults: { min: 1, max: 12 },
     children: { min: 0, max: 12 },
-    periods: { min: 1, max: 12 },
+    weeks: { min: 1, max: 12 },
   };
 
   const formulaButtons = box.querySelectorAll('.calc-formula-btn');
   const adultRateEl = box.querySelector('[data-calc-adult-rate]');
   const childRateEl = box.querySelector('[data-calc-child-rate]');
   const totalLabelEl = box.querySelector('[data-calc-total-label]');
-  const weeksEquivEl = box.querySelector('[data-calc-weeks-equiv]');
   let activeFormula = '2';
 
   const readValue = (key) => {
@@ -205,12 +265,14 @@ function initPricingCalculator() {
   const recalcTotal = () => {
     const adults = readValue('adults');
     const children = readValue('children');
-    const periods = readValue('periods');
+    const weeks = readValue('weeks');
     const f = formulas[activeFormula];
-    const total = (adults * f.adultRate + children * f.childRate) * periods;
+    const extraWeeks = Math.max(0, weeks - 2);
+    const perAdult = f.adultBase + f.adultStep * extraWeeks;
+    const perChild = f.childBase + f.childStep * extraWeeks;
+    const total = Math.round(adults * perAdult + children * perChild);
     const totalEl = document.querySelector('[data-calc-total]');
     if (totalEl) totalEl.textContent = `${total} €`;
-    if (weeksEquivEl) weeksEquivEl.textContent = String(periods * 2);
   };
 
   formulaButtons.forEach((btn) => {
